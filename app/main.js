@@ -8,4 +8,4 @@ const game = new PIXI.Application({
 	resizeTo: window,
 })
 
-app.appendChild(game.view)
+APP.appendChild(game.view)
