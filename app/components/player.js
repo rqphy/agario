@@ -9,7 +9,7 @@ export default class Player {
 
 	draw() {
 		this.mesh.beginFill(0x00ffff, 1)
-		this.mesh.drawCircle(250, 250, 50)
+		this.mesh.drawCircle(500, 500, 50)
 		this.mesh.endFill()
 		this.game.stage.addChild(this.mesh)
 	}
