@@ -11,7 +11,6 @@ export default class Player {
 			window.innerWidth / 2,
 			window.innerHeight / 2
 		)
-		this.velocity = new PIXI.Point(0, 0)
 		this.draw()
 	}
 
@@ -26,7 +25,6 @@ export default class Player {
 
 	update() {
 		console.log("update player")
-		const newVelocity = new PIXI.Point()
 		this.mesh.moveTo(this.position.x, this.position.y)
 	}
 }
