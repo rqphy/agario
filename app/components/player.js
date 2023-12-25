@@ -1,4 +1,5 @@
 import * as PIXI from "pixi.js"
+import general from "../globals/variables"
 
 export default class Player {
 	constructor(game) {
@@ -9,7 +10,7 @@ export default class Player {
 
 	draw() {
 		this.mesh.beginFill(0x00ffff, 1)
-		this.mesh.drawCircle(500, 500, 50)
+		this.mesh.drawCircle(window.innerWidth / 2, window.innerHeight / 2, 50)
 		this.mesh.endFill()
 		this.game.stage.addChild(this.mesh)
 	}
