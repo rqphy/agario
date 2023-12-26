@@ -1,5 +1,6 @@
 import * as PIXI from "pixi.js"
 import general from "../globals/variables"
+import { lerp } from "../globals/maths"
 
 export default class Player {
 	constructor(game) {
@@ -7,10 +8,12 @@ export default class Player {
 		this.mesh = new PIXI.Graphics()
 
 		this.size = 50
-		this.position = new PIXI.Point(
-			window.innerWidth / 2,
-			window.innerHeight / 2
-		)
+		this.targetPosition = {
+			x: window.innerWidth / 2,
+			y: window.innerHeight / 2,
+		}
+		// this.velocity = new PIXI.Point(0, 0)
+		this.velocity = { x: 0, y: 0 }
 		this.draw()
 	}
 
@@ -18,13 +21,24 @@ export default class Player {
 		this.mesh.beginFill(0x00ffff, 1)
 		this.mesh.drawCircle(0, 0, this.size)
 		this.mesh.endFill()
-		this.mesh.position.set(this.position.x, this.position.y)
-		this.mesh.eventMode = "dynamic"
+		this.mesh.position.set(window.innerWidth / 2, window.innerHeight / 2)
 		this.game.stage.addChild(this.mesh)
 	}
 
 	update() {
-		console.log("update player")
-		this.mesh.moveTo(this.position.x, this.position.y)
+		// update mesh position
+
+		// const newPosition = {
+		// 	x: this.mesh.position.x + this.targetPosition.x * 0.004,
+		// 	y: this.mesh.position.y + this.targetPosition.y * 0.004,
+		// }
+		const newPosition = {
+			x: lerp(this.mesh.position.x, this.targetPosition.x, 0.004),
+			y: lerp(this.mesh.position.y, this.targetPosition.y, 0.004),
+		}
+
+		console.log(this.targetPosition)
+
+		this.mesh.position.copyFrom(newPosition)
 	}
 }

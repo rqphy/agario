@@ -13,13 +13,15 @@ game.stage.hitArea = game.screen
 
 const player = new Player(game)
 
+console.log(game)
+
 game.stage.addEventListener("pointermove", (_event) => {
-	console.log(_event)
-	player.mesh.position.copyFrom(_event.global)
+	player.targetPosition.x = _event.global.x - window.innerWidth / 2
+	player.targetPosition.y = _event.global.y - window.innerHeight / 2
 })
 
 game.ticker.add((delta) => {
-	// player.update()
+	player.update()
 })
 
 APP.appendChild(game.view)
