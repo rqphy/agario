@@ -16,8 +16,10 @@ const player = new Player(game)
 console.log(game)
 
 game.stage.addEventListener("pointermove", (_event) => {
-	player.targetPosition.x = _event.global.x - window.innerWidth / 2
-	player.targetPosition.y = _event.global.y - window.innerHeight / 2
+	player.targetPosition.x = _event.global.x
+	player.targetPosition.y = _event.global.y
+	// player.targetPosition.x = _event.global.x - window.innerWidth / 2
+	// player.targetPosition.y = _event.global.y - window.innerHeight / 2
 })
 
 game.ticker.add((delta) => {
