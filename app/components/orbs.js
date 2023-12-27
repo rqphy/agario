@@ -1,15 +1,22 @@
 import * as PIXI from "pixi.js"
+import general from "../globals/variables"
 
 export default class Orbs {
 	constructor(game) {
 		this.game = game
 
+		this.maxNumberOfOrbs = 200
+		this.orbSize = 15
 		this.orbsList = []
 		this.fillOrbsList()
 	}
 
 	fillOrbsList() {
-		this.orbsList.push(new Orb(100, 100, 10, this.game))
+		for (let i = 0; i < this.maxNumberOfOrbs; i++) {
+			const x = Math.round(Math.random() * general.limits.x)
+			const y = Math.round(Math.random() * general.limits.y)
+			this.orbsList.push(new Orb(x, y, this.orbSize, this.game))
+		}
 	}
 }
 
@@ -31,6 +38,5 @@ class Orb {
 		this.mesh.endFill()
 		this.mesh.position.set(this.x, this.y)
 		this.game.stage.addChild(this.mesh)
-		console.log("add orb")
 	}
 }
