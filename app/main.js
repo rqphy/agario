@@ -1,6 +1,7 @@
 import "./styles/main.css"
 import * as PIXI from "pixi.js"
 import Player from "./components/player"
+import Orbs from "./components/orbs"
 
 const APP = document.querySelector("#app")
 
@@ -12,6 +13,7 @@ game.stage.eventMode = "static"
 game.stage.hitArea = game.screen
 
 const player = new Player(game)
+const orbs = new Orbs(game)
 
 console.log(game)
 
