@@ -12,8 +12,8 @@ const game = new PIXI.Application({
 game.stage.eventMode = "static"
 game.stage.hitArea = game.screen
 
-const player = new Player(game)
 const orbs = new Orbs(game)
+const player = new Player(game)
 
 console.log(game)
 
