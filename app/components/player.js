@@ -24,18 +24,14 @@ export default class Player {
 	}
 
 	eats(orb) {
-		const xDist = Math.abs(this.targetPosition.x - orb.x)
-		const yDist = Math.abs(this.targetPosition.y - orb.y)
-		// console.log(xDist, yDist)
-
+		if (!orb) return false
 		const distance = getDistance(
 			{ x: orb.x, y: orb.y },
 			{ x: this.mesh.x, y: this.mesh.y }
 		)
 
-		if (distance < this.size) {
-			console.log("EAT")
-		}
+		if (distance < this.size) return true
+		return false
 	}
 
 	update() {

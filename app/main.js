@@ -15,20 +15,18 @@ game.stage.hitArea = game.screen
 const orbs = new Orbs(game)
 const player = new Player(game)
 
-console.log(game)
-
 game.stage.addEventListener("pointermove", (_event) => {
 	player.targetPosition.x = _event.global.x
 	player.targetPosition.y = _event.global.y
-	// player.targetPosition.x = _event.global.x - window.innerWidth / 2
-	// player.targetPosition.y = _event.global.y - window.innerHeight / 2
 })
 
 game.ticker.add((delta) => {
 	player.update()
 	for (let i = orbs.maxNumberOfOrbs; i > 0; i--) {
-		// console.log(orbs.orbsList[i - 1].x)
-		player.eats(orbs.orbsList[i - 1])
+		if (player.eats(orbs.orbsList[i - 1])) {
+			orbs.orbsList.splice(i - 1, 1)
+			orbs.eaten(i - 1)
+		}
 	}
 })
 

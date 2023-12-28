@@ -13,18 +13,34 @@ export default class Orbs {
 
 	fillOrbsList() {
 		for (let i = 0; i < this.maxNumberOfOrbs; i++) {
-			const x = Math.round(Math.random() * general.limits.x)
-			const y = Math.round(Math.random() * general.limits.y)
-			this.orbsList.push(new Orb(x, y, this.orbSize, this.game))
+			this.orbsList.push(
+				new Orb(this.getRandomPosition(), this.orbSize, this.game)
+			)
 		}
+	}
+
+	getRandomPosition() {
+		return {
+			x: Math.round(Math.random() * general.limits.x),
+			y: Math.round(Math.random() * general.limits.y),
+		}
+	}
+
+	eaten(index) {
+		this.orbsList[index]?.remove()
+		// this.orbsList[index] = new Orb(
+		// 	this.getRandomPosition(),
+		// 	this.orbSize,
+		// 	this.game
+		// )
 	}
 }
 
 class Orb {
-	constructor(x, y, ray, game) {
+	constructor(position, ray, game) {
 		this.size = ray
-		this.x = x
-		this.y = y
+		this.x = position.x
+		this.y = position.y
 		this.game = game
 
 		this.mesh = new PIXI.Graphics()
@@ -38,5 +54,10 @@ class Orb {
 		this.mesh.endFill()
 		this.mesh.position.set(this.x, this.y)
 		this.game.stage.addChild(this.mesh)
+	}
+
+	remove() {
+		this.game.stage.removeChild(this.mesh)
+		console.log(this.game.stage)
 	}
 }
