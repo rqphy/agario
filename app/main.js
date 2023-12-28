@@ -26,6 +26,10 @@ game.stage.addEventListener("pointermove", (_event) => {
 
 game.ticker.add((delta) => {
 	player.update()
+	for (let i = orbs.maxNumberOfOrbs; i > 0; i--) {
+		// console.log(orbs.orbsList[i - 1].x)
+		player.eats(orbs.orbsList[i - 1])
+	}
 })
 
 APP.appendChild(game.view)

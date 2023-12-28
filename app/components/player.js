@@ -1,6 +1,6 @@
 import * as PIXI from "pixi.js"
 import general from "../globals/variables"
-import { lerp } from "../globals/maths"
+import { lerp, getDistance } from "../globals/maths"
 
 export default class Player {
 	constructor(game) {
@@ -21,6 +21,21 @@ export default class Player {
 		this.mesh.endFill()
 		this.mesh.position.set(window.innerWidth / 2, window.innerHeight / 2)
 		this.game.stage.addChild(this.mesh)
+	}
+
+	eats(orb) {
+		const xDist = Math.abs(this.targetPosition.x - orb.x)
+		const yDist = Math.abs(this.targetPosition.y - orb.y)
+		// console.log(xDist, yDist)
+
+		const distance = getDistance(
+			{ x: orb.x, y: orb.y },
+			{ x: this.mesh.x, y: this.mesh.y }
+		)
+
+		if (distance < this.size) {
+			console.log("EAT")
+		}
 	}
 
 	update() {
