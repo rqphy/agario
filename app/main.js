@@ -24,7 +24,6 @@ game.ticker.add((delta) => {
 	player.update()
 	for (let i = orbs.maxNumberOfOrbs; i > 0; i--) {
 		if (player.eats(orbs.orbsList[i - 1])) {
-			orbs.orbsList.splice(i - 1, 1)
 			orbs.eaten(i - 1)
 		}
 	}

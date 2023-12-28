@@ -28,11 +28,11 @@ export default class Orbs {
 
 	eaten(index) {
 		this.orbsList[index]?.remove()
-		// this.orbsList[index] = new Orb(
-		// 	this.getRandomPosition(),
-		// 	this.orbSize,
-		// 	this.game
-		// )
+		this.orbsList[index] = new Orb(
+			this.getRandomPosition(),
+			this.orbSize,
+			this.game
+		)
 	}
 }
 
