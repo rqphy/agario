@@ -22,9 +22,9 @@ game.stage.addEventListener("pointermove", (_event) => {
 
 game.ticker.add((delta) => {
 	player.update()
-	for (let i = orbs.maxNumberOfOrbs; i > 0; i--) {
-		if (player.eats(orbs.orbsList[i - 1])) {
-			orbs.eaten(i - 1)
+	for (let i = orbs.maxNumberOfOrbs - 1; i > 0; i--) {
+		if (player.eats(orbs.orbsList[i])) {
+			orbs.eaten(i)
 		}
 	}
 })
