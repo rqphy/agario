@@ -58,6 +58,6 @@ class Orb {
 
 	remove() {
 		this.game.stage.removeChild(this.mesh)
-		console.log(this.game.stage)
+		this.mesh.destroy()
 	}
 }
