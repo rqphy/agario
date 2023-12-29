@@ -6,7 +6,7 @@ export default class Orbs {
 		this.game = game
 
 		this.maxNumberOfOrbs = 200
-		this.orbSize = 15
+		this.orbSize = general.orbSize
 		this.orbsList = []
 		this.fillOrbsList()
 	}
