@@ -6,5 +6,6 @@ general.limits = {
 }
 
 general.orbSize = 15
+general.playerSize = 50
 
 export default general

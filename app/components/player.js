@@ -7,7 +7,7 @@ export default class Player {
 		this.game = game
 		this.mesh = new PIXI.Graphics()
 
-		this.size = 50
+		this.size = general.playerSize
 		this.targetPosition = {
 			x: window.innerWidth / 2,
 			y: window.innerHeight / 2,
@@ -31,12 +31,17 @@ export default class Player {
 		)
 
 		if (distance < this.size) {
-			const newPlayerR = Math.sqrt(
+			// get new ray value
+			const newPlayerRay = Math.sqrt(
 				0.5 *
 					(Math.PI * this.size * this.size +
 						Math.PI * orb.size * orb.size)
 			)
 
+			// convert to scale 1
+			this.size = newPlayerRay
+			const newPlayerScale = newPlayerRay / this.size
+			this.mesh.scale.set(newPlayerScale, newPlayerScale)
 			return true
 		}
 		return false
