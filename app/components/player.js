@@ -30,7 +30,15 @@ export default class Player {
 			{ x: this.mesh.x, y: this.mesh.y }
 		)
 
-		if (distance < this.size) return true
+		if (distance < this.size) {
+			const newPlayerR = Math.sqrt(
+				0.5 *
+					(Math.PI * this.size * this.size +
+						Math.PI * orb.size * orb.size)
+			)
+
+			return true
+		}
 		return false
 	}
 
