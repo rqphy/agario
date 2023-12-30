@@ -8,6 +8,7 @@ export default class Player {
 		this.mesh = new PIXI.Graphics()
 
 		this.size = general.playerSize
+		this.scale = 1
 		this.targetPosition = {
 			x: window.innerWidth / 2,
 			y: window.innerHeight / 2,
@@ -33,15 +34,16 @@ export default class Player {
 		if (distance < this.size) {
 			// get new ray value
 			const newPlayerRay = Math.sqrt(
-				0.5 *
-					(Math.PI * this.size * this.size +
-						Math.PI * orb.size * orb.size)
+				(Math.PI * this.size * this.size +
+					Math.PI * orb.size * orb.size) /
+					Math.PI
 			)
 
 			// convert to scale 1
+			console.log(newPlayerRay, this.size)
+			this.scale += newPlayerRay / this.size - 1
 			this.size = newPlayerRay
-			const newPlayerScale = newPlayerRay / this.size
-			this.mesh.scale.set(newPlayerScale, newPlayerScale)
+			this.mesh.scale.set(this.scale, this.scale)
 			return true
 		}
 		return false
