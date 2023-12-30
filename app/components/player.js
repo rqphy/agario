@@ -40,7 +40,6 @@ export default class Player {
 			)
 
 			// convert to scale 1
-			console.log(newPlayerRay, this.size)
 			this.scale += newPlayerRay / this.size - 1
 			this.size = newPlayerRay
 			this.mesh.scale.set(this.scale, this.scale)
