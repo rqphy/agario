@@ -2,6 +2,7 @@ import "./styles/main.css"
 import * as PIXI from "pixi.js"
 import Player from "./components/player"
 import Orbs from "./components/orbs"
+import Map from "./components/map"
 
 const APP = document.querySelector("#app")
 
@@ -12,8 +13,9 @@ const game = new PIXI.Application({
 game.stage.eventMode = "static"
 game.stage.hitArea = game.screen
 
-const orbs = new Orbs(game)
-const player = new Player(game)
+const map = new Map()
+const orbs = new Orbs(map)
+const player = new Player(map)
 
 game.stage.addEventListener("pointermove", (_event) => {
 	player.targetPosition.x = _event.global.x
@@ -29,4 +31,5 @@ game.ticker.add((delta) => {
 	}
 })
 
+game.stage.addChild(map.mesh)
 APP.appendChild(game.view)

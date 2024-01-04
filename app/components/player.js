@@ -3,8 +3,8 @@ import general from "../globals/variables"
 import { lerp, getDistance } from "../globals/maths"
 
 export default class Player {
-	constructor(game) {
-		this.game = game
+	constructor(map) {
+		this.map = map
 		this.mesh = new PIXI.Graphics()
 
 		this.size = general.playerSize
@@ -21,7 +21,7 @@ export default class Player {
 		this.mesh.drawCircle(0, 0, this.size)
 		this.mesh.endFill()
 		this.mesh.position.set(window.innerWidth / 2, window.innerHeight / 2)
-		this.game.stage.addChild(this.mesh)
+		this.map.mesh.addChild(this.mesh)
 	}
 
 	eats(orb) {

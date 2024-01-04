@@ -2,8 +2,8 @@ import * as PIXI from "pixi.js"
 import general from "../globals/variables"
 
 export default class Orbs {
-	constructor(game) {
-		this.game = game
+	constructor(map) {
+		this.map = map
 
 		this.maxNumberOfOrbs = 200
 		this.orbSize = general.orbSize
@@ -14,7 +14,7 @@ export default class Orbs {
 	fillOrbsList() {
 		for (let i = 0; i < this.maxNumberOfOrbs; i++) {
 			this.orbsList.push(
-				new Orb(this.getRandomPosition(), this.orbSize, this.game)
+				new Orb(this.getRandomPosition(), this.orbSize, this.map)
 			)
 		}
 	}
@@ -31,17 +31,17 @@ export default class Orbs {
 		this.orbsList[index] = new Orb(
 			this.getRandomPosition(),
 			this.orbSize,
-			this.game
+			this.map
 		)
 	}
 }
 
 class Orb {
-	constructor(position, ray, game) {
+	constructor(position, ray, map) {
 		this.size = ray
 		this.x = position.x
 		this.y = position.y
-		this.game = game
+		this.map = map
 
 		this.mesh = new PIXI.Graphics()
 
@@ -53,11 +53,11 @@ class Orb {
 		this.mesh.drawCircle(0, 0, this.size)
 		this.mesh.endFill()
 		this.mesh.position.set(this.x, this.y)
-		this.game.stage.addChild(this.mesh)
+		this.map.mesh.addChild(this.mesh)
 	}
 
 	remove() {
-		this.game.stage.removeChild(this.mesh)
+		this.map.mesh.removeChild(this.mesh)
 		this.mesh.destroy()
 	}
 }
