@@ -17,15 +17,16 @@ export default class Map {
 	update() {
 		// update mesh position
 		// to fix : issue between cursor position (relative to window size) and map size
-		console.log(this.mesh.position.x, this.targetPosition.x)
-		const newPosition = {
-			x: this.targetPosition.x,
-			y: this.targetPosition.y,
+		console.log(this.mesh.position.x, this.mesh.position.y)
+
+		const projectedPosition = {
+			x: (this.targetPosition.x * this.mesh.width) / window.innerWidth,
+			y: (this.targetPosition.y * this.mesh.height) / window.innerHeight,
 		}
-		// const newPosition = {
-		// 	x: lerp(this.mesh.position.x, this.targetPosition.x, 0.004),
-		// 	y: lerp(this.mesh.position.y, this.targetPosition.y, 0.004),
-		// }
+		const newPosition = {
+			x: lerp(this.mesh.position.x, projectedPosition.x, 0.0004),
+			y: lerp(this.mesh.position.y, projectedPosition.y, 0.0004),
+		}
 
 		this.mesh.position.copyFrom(newPosition)
 	}
