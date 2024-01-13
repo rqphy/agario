@@ -20,10 +20,13 @@ const player = new Player(map)
 game.stage.addEventListener("pointermove", (_event) => {
 	player.targetPosition.x = _event.global.x
 	player.targetPosition.y = _event.global.y
+	map.targetPosition.x = -_event.global.x
+	map.targetPosition.y = -_event.global.y
 })
 
 game.ticker.add((delta) => {
 	player.update()
+	map.update()
 	for (let i = 0 - 1; i < orbs.maxNumberOfOrbs; i++) {
 		if (player.eats(orbs.orbsList[i])) {
 			orbs.eaten(i)
