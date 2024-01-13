@@ -9,25 +9,38 @@ export default class Map {
 		this.mesh.height = general.limits.y
 		this.mesh.width = general.limits.x
 		this.targetPosition = {
-			x: general.limits.x * 0.5,
-			y: general.limits.y * 0.5,
+			x: 0,
+			y: 0,
 		}
 	}
 
 	update() {
 		// update mesh position
-		// to fix : issue between cursor position (relative to window size) and map size
-		console.log(this.mesh.position.x, this.mesh.position.y)
+
+		// const projectedPosition = {
+		// 	x: (this.targetPosition.x * this.mesh.width) / window.innerWidth,
+		// 	y: (this.targetPosition.y * this.mesh.height) / window.innerHeight,
+		// }
+
+		// console.log(this.targetPosition)
 
 		const projectedPosition = {
-			x: (this.targetPosition.x * this.mesh.width) / window.innerWidth,
-			y: (this.targetPosition.y * this.mesh.height) / window.innerHeight,
-		}
-		const newPosition = {
-			x: lerp(this.mesh.position.x, projectedPosition.x, 0.0004),
-			y: lerp(this.mesh.position.y, projectedPosition.y, 0.0004),
+			x: this.mesh.position.x - this.targetPosition.x,
+			y: this.mesh.position.y - this.targetPosition.y,
 		}
 
+		// console.log(projectedPosition.y)
+
+		const newPosition = {
+			x: lerp(this.mesh.position.x, projectedPosition.x, 0.8),
+			y: lerp(this.mesh.position.y, projectedPosition.y, 0.8),
+		}
+
+		// console.log(newPosition.y)
+
+		// console.log(this.mesh.position.x, newPosition.x)
+
 		this.mesh.position.copyFrom(newPosition)
+		return newPosition
 	}
 }

@@ -48,13 +48,24 @@ export default class Player {
 		return false
 	}
 
-	update() {
+	update(pos) {
 		// update mesh position
-		const newPosition = {
-			x: lerp(this.mesh.position.x, this.targetPosition.x, 0.004),
-			y: lerp(this.mesh.position.y, this.targetPosition.y, 0.004),
-		}
+		// const projectedPosition = {
+		// 	x: (this.targetPosition.x * general.limits.x) / window.innerWidth,
+		// 	x: (this.targetPosition.y * general.limits.y) / window.innerHeight,
+		// }
 
-		this.mesh.position.copyFrom(newPosition)
+		// console.log(projectedPosition.x, this.mesh.position.x)
+
+		// const newPosition = {
+		// 	x: lerp(this.mesh.position.x, projectedPosition.x, 0.004),
+		// 	y: lerp(this.mesh.position.y, projectedPosition.y, 0.004),
+		// }
+
+		// this.mesh.position.copyFrom(newPosition)
+		this.mesh.position.copyFrom({
+			x: -pos.x + window.innerWidth / 2,
+			y: -pos.y + window.innerHeight / 2,
+		})
 	}
 }
