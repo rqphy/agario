@@ -5,7 +5,7 @@ export default class Orbs {
 	constructor(map) {
 		this.map = map
 
-		this.maxNumberOfOrbs = 200
+		this.maxNumberOfOrbs = 500
 		this.orbSize = general.orbSize
 		this.orbsList = []
 		this.fillOrbsList()
