@@ -8,3 +8,7 @@ export function getDistance(aPosition, bPosition) {
 			Math.pow(bPosition.y - aPosition.y, 2)
 	)
 }
+
+export function getRandomHex() {
+	return Math.floor(Math.random() * 16777215).toString(16)
+}

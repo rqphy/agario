@@ -1,6 +1,6 @@
 import * as PIXI from "pixi.js"
 import general from "../globals/variables"
-import { lerp, getDistance } from "../globals/maths"
+import { getRandomHex, getDistance } from "../globals/utils"
 
 export default class Player {
 	constructor(map) {
@@ -17,7 +17,7 @@ export default class Player {
 	}
 
 	draw() {
-		this.mesh.beginFill(0x00ffff, 1)
+		this.mesh.beginFill(`0x${getRandomHex()}`, 1)
 		this.mesh.drawCircle(0, 0, this.size)
 		this.mesh.endFill()
 		this.mesh.position.set(window.innerWidth / 2, window.innerHeight / 2)

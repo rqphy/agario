@@ -1,5 +1,5 @@
 import general from "../globals/variables"
-import { lerp, getDistance } from "../globals/maths"
+import { lerp, getDistance } from "../globals/utils"
 
 import * as PIXI from "pixi.js"
 
